@@ -146,8 +146,8 @@ public class TimeClientHandle implements Runnable {
 	byte[] req = "QUERY TIME ORDER".getBytes();
 	ByteBuffer writeBuffer = ByteBuffer.allocate(req.length);
 	writeBuffer.put(req);
-	writeBuffer.flip();
-	sc.write(writeBuffer);
+	writeBuffer.flip(); // 切换读写模式
+	sc.write(writeBuffer);  //从buffer中读取数据，读到的内容向当前通道里写入
 	if (!writeBuffer.hasRemaining())
 	    System.out.println("Send order 2 server succeed.");
     }
